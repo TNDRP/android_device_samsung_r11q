@@ -118,7 +118,9 @@ BOARD_ROOT_EXTRA_FOLDERS := \
 	second_stage_resources \
 	spu \
 	system_ext \
-	vendor_dlkm
+	vendor_dlkm \
+        keydata \
+        keyrefuge
 
 # Recovery
 RECOVERY_SDCARD_ON_DATA := true
