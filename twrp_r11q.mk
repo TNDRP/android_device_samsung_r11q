@@ -15,6 +15,8 @@ $(call inherit-product, vendor/twrp/config/common.mk)
 # Inherit from r11q device
 $(call inherit-product, device/samsung/r11q/device.mk)
 
+PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,device/samsung/gta9/recovery/root,recovery/root)
+
 PRODUCT_DEVICE := r11q
 PRODUCT_NAME := twrp_r11q
 PRODUCT_BRAND := samsung
