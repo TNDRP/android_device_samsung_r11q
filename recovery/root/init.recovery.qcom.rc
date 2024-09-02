@@ -32,6 +32,9 @@ on init
     setprop sys.usb.controller a600000.dwc3
     setprop prepdecrypt.loglevel 2
     start vendor.qseecomd
+    start keymint-default
+    start keymaster-sb-4-0
+    start vendor.fkeymaster-default
 
 on boot 
     start health-hal-2-1
@@ -54,16 +57,3 @@ on fs
 on post-fs-data
 #   exec - root -- /vendor/bin/init.insmod.sh
     exec - root -- /vendor/bin/init.insmod.recovery.sh
-
-on property:crypto.ready=1
-    start keymint-default
-    start keymaster-sb-4-0
-    start vendor.fkeymaster-default
-
-on property:crypto.ready=0
-    stop keymaster-sb-4-0
-    stop keymint-default
-    stop vendor.fkeymaster-default
-
-on property:twrp.user.0.decrypt=0
-    umount /vendor/firmware_mnt
