@@ -32,6 +32,8 @@ on init
     setprop sys.usb.controller a600000.dwc3
     setprop prepdecrypt.loglevel 2
     start vendor.qseecomd
+    start vendor.spdaemon
+    start vendor.sec_nvm
 
 on boot 
     start health-hal-2-1
@@ -66,8 +68,6 @@ on post-fs-data
 
 on post-fs-data && property:ro.crypto.state=encrypted && property:ro.crypto.type=file
     start time_daemon
-    start vendor.spdaemon
-    start vendor.sec_nvm
 
 on post-fs && property:ro.boot.product.vendor.sku=taro
     mkdir /mnt/vendor/persist/secnvm 0770 root root
@@ -86,7 +86,6 @@ service vendor.keymaster-sb-4-0 /vendor/bin/hw/android.hardware.keymaster@4.0-st
     user root
     group root drmrpc
     seclabel u:r:recovery:s0
-
 
 service vendor.keymint-default /vendor/bin/hw/android.hardware.security.keymint-service
     class early_hal
