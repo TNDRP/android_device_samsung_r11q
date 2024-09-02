@@ -32,12 +32,13 @@ on init
     setprop sys.usb.controller a600000.dwc3
     setprop prepdecrypt.loglevel 2
     start vendor.qseecomd
-    start keymint-default
-    start keymaster-sb-4-0
-    start vendor.fkeymaster-default
 
 on boot 
     start health-hal-2-1
+    start service vendor.keymint-default
+    start vendor.keymaster-sb-4-0
+    start vendor.fkeymaster-default
+    start vendor.gatekeeper-1-0
 
 on property:ro.boot.usbcontroller=*
 #    setprop sys.usb.controller ${ro.boot.usbcontroller}
@@ -48,12 +49,83 @@ on property:ro.boot.usbcontroller=*
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
-    # Mount firmware
-    mkdir /vendor/firmware_mnt
-    mount vfat /dev/block/bootdevice/by-name/apnhlos /vendor/firmware_mnt
-    # Root
+
     export ANDROID_ROOT /system_root
+
+on post-fs
+    mkdir /mnt/vendor/efs/DAK 0775 root root
+    restorecon -R /mnt/vendor/efs/DAK
+    chown root root /mnt/vendor/efs/DAK/gakkeybox
+    chmod 0644 /mnt/vendor/efs/DAK/gakkeybox
 
 on post-fs-data
 #   exec - root -- /vendor/bin/init.insmod.sh
     exec - root -- /vendor/bin/init.insmod.recovery.sh
+    mkdir /data/vendor/keymaster 0775 root root
+    mkdir /data/vendor/gatekeeper 0770 root root
+
+on post-fs-data && property:ro.crypto.state=encrypted && property:ro.crypto.type=file
+    start time_daemon
+    start vendor.spdaemon
+    start vendor.sec_nvm
+
+on post-fs && property:ro.boot.product.vendor.sku=taro
+    mkdir /mnt/vendor/persist/secnvm 0770 root root
+    wait /mnt/vendor/persist/secnvm
+    mkdir /mnt/vendor/persist/iar_db 0770 root root
+
+service vendor.fkeymaster-default /vendor/bin/vendor.samsung.hardware.security.fkeymaster-service
+    interface aidl vendor.samsung.hardware.security.fkeymaster.ISehFkeymaster/default
+    class early_hal
+    user root
+    group root
+    seclabel u:r:recovery:s0
+
+service vendor.keymaster-sb-4-0 /vendor/bin/hw/android.hardware.keymaster@4.0-strongbox-service-qti
+    class early_hal
+    user root
+    group root drmrpc
+    seclabel u:r:recovery:s0
+
+
+service vendor.keymint-default /vendor/bin/hw/android.hardware.security.keymint-service
+    class early_hal
+    user root
+    group root drmrpc
+    seclabel u:r:recovery:s0
+
+service vendor.qseecomd /vendor/bin/qseecomd
+    socket notify-topology stream 660 root drmrpc
+    class core
+    user root
+    group root drmrpc
+    seclabel u:r:recovery:s0
+
+service vendor.gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
+    interface android.hardware.gatekeeper@1.0::IGatekeeper default
+    class hal
+    user root
+    group root 5678
+    seclabel u:r:recovery:s0
+
+service time_daemon /vendor/bin/time_daemon
+    class main
+    user root
+    group root readproc
+    capabilities SYS_TIME
+    seclabel u:r:recovery:s0
+
+service vendor.spdaemon /vendor/bin/spdaemon
+    class core
+    user root
+    group root
+    disabled
+    shutdown critical
+    seclabel u:r:recovery:s0
+
+service vendor.sec_nvm /vendor/bin/sec_nvm
+    class core
+    user root
+    group root
+    disabled
+    seclabel u:r:recovery:s0
