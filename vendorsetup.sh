@@ -5,6 +5,4 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-add_lunch_combo twrp_r11q-user
-add_lunch_combo twrp_r11q-userdebug
-add_lunch_combo twrp_r11q-eng
+# Reserved
