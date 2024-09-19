@@ -31,16 +31,14 @@ on init
     write /sys/class/backlight/panel0-backlight/brightness 200
     setprop sys.usb.controller a600000.dwc3
     setprop prepdecrypt.loglevel 2
-    start vendor.qseecomd
-    start vendor.spdaemon
-    start vendor.sec_nvm
-
-on boot 
-    start health-hal-2-1
-    start service vendor.keymint-default
+    start vendor.keymint-default
     start vendor.keymaster-sb-4-0
     start vendor.fkeymaster-default
     start vendor.gatekeeper-1-0
+    start vendor.qseecomd
+
+on boot 
+    start health-hal-2-1
 
 on property:ro.boot.usbcontroller=*
 #    setprop sys.usb.controller ${ro.boot.usbcontroller}
