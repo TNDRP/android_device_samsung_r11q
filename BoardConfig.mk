@@ -119,8 +119,8 @@ BOARD_ROOT_EXTRA_FOLDERS := \
 	spu \
 	system_ext \
 	vendor_dlkm \
-        keydata \
-        keyrefuge
+    keydata \
+    keyrefuge
 
 # Recovery
 RECOVERY_SDCARD_ON_DATA := true
@@ -155,7 +155,7 @@ VENDOR_SECURITY_PATCH := 2099-12-31
 PLATFORM_VERSION := 16.1.0
 
 # Encryption & Misc
-#TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO := true
 #TW_INCLUDE_CRYPTO_FBE := false
 TW_FORCE_KEYMASTER_VER := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
