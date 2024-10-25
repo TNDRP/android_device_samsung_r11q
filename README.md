@@ -7,10 +7,10 @@
 ## Sync
     repo sync
 ## Clone TheNoobDevs-Staging TWRP tree
-    git clone https://github.com/TND-STAGING/android_device_samsung_r11q.git -b twrp-14 device/samsung/r11q
+    git clone https://github.com/TND-STAGING/android_device_samsung_r11q.git -b staging-s5 device/samsung/r11q
 ## Prepare
     export ALLOW_MISSING_DEPENDENCIES=true; . build/envsetup.sh; lunch twrp_r11q-eng
 ## Repopick Patches
     repopick -Q "branch:android-14+status:open+-change:7371+-change:7543+-change:7553+-change:7671+-change:7717+-change:7718"
 ## Run the Build Command
-    export ALLOW_MISSING_DEPENDENCIES=true; . build/envsetup.sh; lunch twrp_r11q-eng; mka recoveryimage
+    mka recoveryimage

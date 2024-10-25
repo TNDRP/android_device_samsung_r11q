@@ -31,6 +31,7 @@ on init
     write /sys/class/backlight/panel0-backlight/brightness 200
     setprop sys.usb.controller a600000.dwc3
     setprop prepdecrypt.loglevel 2
+    setprop logd.ready true
 
 on boot 
     start health-hal-2-1
