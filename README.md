@@ -6,8 +6,8 @@
     repo init --depth=1 -u https://github.com/MrFluffyOven/platform_manifest_twrp_aosp.git -b twrp-14
 ## Sync
     repo sync
-## Clone TheNoobDevs-Staging TWRP tree
-    git clone https://github.com/TND-STAGING/android_device_samsung_r11q.git -b twrp-14 device/samsung/r11q
+## Clone TheNoobDevs Recovery Project TWRP tree
+    git clone https://github.com/TNDRP/android_device_samsung_r11q.git -b twrp-14 device/samsung/r11q
 ## Prepare
     export ALLOW_MISSING_DEPENDENCIES=true; . build/envsetup.sh; lunch twrp_r11q-eng
 ## Repopick Patches
