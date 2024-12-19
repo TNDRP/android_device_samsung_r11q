@@ -1,9 +1,0 @@
-service gatekeeperd /system/bin/gatekeeperd
-    user root
-    group root 5678 5666
-    task_profiles ServiceCapacityLow
-    seclabel u:r:recovery:s0
-
-on post-fs-data
-    mkdir /efs/gatekeeper 0775 root root
-    restorecon -R /efs/gatekeeper
