@@ -21,11 +21,15 @@ PRODUCT_PACKAGES += \
 # Recovery modules/dependencies
 TARGET_RECOVERY_DEVICE_MODULES += \
     libandroidicu \
-    libsecureui
+    libsecureui \
+    libkeymint \
+    libkeymint_support 
 
 RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libandroidicu.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libsecureui.so
+    $(TARGET_OUT_SHARED_LIBRARIES)/libsecureui.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymint.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymint_support.so
 
 #PRODUCT_PACKAGES += \
     otapreopt_script \
