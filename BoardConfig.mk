@@ -37,6 +37,8 @@ TARGET_USES_UEFI := true
 TARGET_IS_64_BIT := true
 TARGET_USES_64_BIT_BINDER := true
 TARGET_BOARD_SUFFIX := _64
+ENABLE_CPUSETS := true
+ENABLE_SCHEDBOOST := true
 
 # Board
 BOARD_USES_QCOM_HARDWARE := true
@@ -66,7 +68,10 @@ TW_NO_REBOOT_BOOTLOADER := true
 TARGET_SCREEN_DENSITY := 403
 TARGET_SCREEN_HEIGHT := 1080
 TARGET_SCREEN_WIDTH := 2340
-TW_MAX_BRIGHTNESS := 300 
+TW_MAX_BRIGHTNESS := 600
+TW_DEFAULT_BRIGHTNESS := 128
+TW_FRAMERATE := 120
+TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
 
 # Commandline
 BOARD_KERNEL_CMDLINE := video=vfb:640x400,bpp=32,memsize=3072000 printk.devkmsg=on firmware_class.path=/vendor/firmware_mnt/image console=null bootconfig androidboot.hardware=qcom hardware=qcom androidboot.memcg=1 androidboot.usbcontroller=a600000.dwc3 androidboot.init_fatal_panic=true androidboot.selinux=permissive loop.max_part=7
@@ -97,6 +102,17 @@ BOARD_MKBOOTIMG_ARGS:= \
 --tags_offset=0x01e00000 \
 --header_version=$(BOARD_BOOTIMG_HEADER_VERSION) \
 --dtb=$(TARGET_PREBUILT_DTB)
+BOARD_ROOT_EXTRA_FOLDERS := \
+    carrier \
+    efs \
+    keydata \
+    keyrefuge \
+    metadata \
+    misc \
+    omr \
+    optics \
+    prism \
+    spu
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
@@ -105,28 +121,13 @@ BOARD_BOOTIMAGE_PARTITION_SIZE := 105381888
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 105381888
 
 BOARD_SYSTEMIMAGE_PARTITION_TYPE := erofs
-BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := erofs
 
 BOARD_SUPER_PARTITION_SIZE := 9126805504
 BOARD_SUPER_PARTITION_GROUPS := samsung_dynamic_partitions
 BOARD_SAMSUNG_DYNAMIC_PARTITIONS_PARTITION_LIST := system system system vendor product odm system_ext vendor_dlkm
 BOARD_SAMSUNG_DYNAMIC_PARTITIONS_SIZE := 9122611200
-
-# System as root
-BOARD_ROOT_EXTRA_FOLDERS := \
-	cache \
-	carrier \
-	data_mirror \
-	efs \
-	linkerconfig \
-	odm_dlkm \
-	oem \
-	optics \
-	postinstall \
-	prism \
-	second_stage_resources \
-	spu 
 
 # Recovery
 RECOVERY_SDCARD_ON_DATA := true
@@ -135,6 +136,7 @@ TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 TARGET_USES_MKE2FS := true
+TW_INCLUDE_NTFS_3G := true 
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
@@ -167,6 +169,11 @@ TW_EXCLUDE_APEX := true
 TW_NO_BIND_SYSTEM := true
 TW_SKIP_ADDITIONAL_FSTAB := true
 TW_FORCE_KEYMASTER_VER := true
+TW_INCLUDE_LPDUMP := true
+TW_INCLUDE_LPTOOLS := true
+TW_NO_EXFAT_FUSE := true
+TW_NO_HAPTICS := true
+TW_CUSTOM_CPU_TEMP_PATH := /sys/class/thermal/thermal_zone50/temp
 
 # USB / External Storage
 TW_EXCLUDE_DEFAULT_USB_INIT := true 
