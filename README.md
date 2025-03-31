@@ -1,7 +1,7 @@
 # Android device tree for samsung SM-S711U (r11q)
 
 Blocking checks
-- [ ] Correct screen/recovery size
+- [+] Correct screen/recovery size
 - [ ] Working Touch, screen
 - [ ] Backup to internal/microSD
 - [ ] Restore from internal/microSD
