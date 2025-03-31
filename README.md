@@ -21,13 +21,13 @@ Medium checks
 
 Minor checks
 - [ ] MTP export
-- [ ] reboot to bootloader
-- [ ] reboot to recovery
-- [ ] poweroff
-- [ ] battery level
+- [x] reboot to bootloader
+- [x] reboot to recovery
+- [x] poweroff
+- [x] battery level
 - [ ] temperature
 - [ ] encrypted backups
-- [ ] input devices via USB (USB-OTG) - keyboard, mouse and disks (not supported by the device)
+- [x] input devices via USB (USB-OTG) - keyboard, mouse and disks (not supported by the device)
 - [ ] USB mass storage export
 - [ ] set brightness
 - [ ] vibrate
