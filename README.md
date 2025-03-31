@@ -32,4 +32,4 @@ Minor checks
 - [x] set brightness
 - [ ] vibrate
 - [ ] screenshot
-- [ ] partition SD card
+- [ ] --partition SD card--
