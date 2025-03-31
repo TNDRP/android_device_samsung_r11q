@@ -3,7 +3,7 @@
 # How-to compile it:
 
 ## twrp-14 Manifest
-    repo init --depth=1 -u https://github.com/MrFluffyOven/platform_manifest_twrp_aosp.git -b twrp-14
+    repo init --depth=1 -u https://github.com/SavedByLight/platform_manifest_twrp_aosp.git -b twrp-14
 ## Sync
     repo sync
 ## Clone TheNoobDevs Recovery Project TWRP tree
