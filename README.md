@@ -1,12 +1,12 @@
 # Android device tree for samsung SM-S711U (r11q)
 
 Blocking checks
-- [ ] Correct screen/recovery size
+- [x] Correct screen/recovery size
 - [ ] Working Touch, screen
 - [ ] Backup to internal/microSD
 - [ ] Restore from internal/microSD
-- [ ] reboot to system
-- [ ] ADB
+- [x] reboot to system
+- [x] ADB
 
 Medium checks
 - [ ] update.zip sideload
