@@ -12,8 +12,8 @@ Medium checks
 - [ ] update.zip sideload
 - [ ] UI colors (red/blue inversions)
 - [ ] Screen goes off and on
-- [ ] F2FS/EXT4 Support, exFAT/NTFS where supported
-- [ ] all important partitions listed in mount/backup lists
+- [x] F2FS/EXT4 Support, exFAT/NTFS where supported
+- [x] all important partitions listed in mount/backup lists
 - [ ] backup/restore to/from external (USB-OTG) storage (not supported by the device)
 - [ ] backup/restore to/from adb (https://gerrit.omnirom.org/#/c/15943/)
 - [ ] decrypt /data
@@ -29,7 +29,7 @@ Minor checks
 - [ ] encrypted backups
 - [x] input devices via USB (USB-OTG) - keyboard, mouse and disks (not supported by the device)
 - [ ] USB mass storage export
-- [ ] set brightness
+- [x] set brightness
 - [ ] vibrate
 - [ ] screenshot
 - [ ] partition SD card
