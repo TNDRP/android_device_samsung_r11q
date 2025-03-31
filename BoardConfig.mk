@@ -196,4 +196,4 @@ TW_NO_LEGACY_PROPS := true
 TARGET_COPY_OUT_VENDOR := vendor
 
 # Kernel Modules
-TW_LOAD_VENDOR_MODULES := $(shell echo \"$(shell ls $(DEVICE_PATH)/recovery/root/lib/modules) $(shell ls $(DEVICE_PATH)/recovery/root/vendor/lib/modules)\")
+TW_LOAD_VENDOR_MODULES := $(shell echo \"$(shell ls $(DEVICE_PATH)/recovery/root/lib/modules)
