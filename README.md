@@ -1,16 +1,35 @@
 # Android device tree for samsung SM-S711U (r11q)
 
-# How-to compile it:
+Blocking checks
+- [ ] Correct screen/recovery size
+- [ ] Working Touch, screen
+- [ ] Backup to internal/microSD
+- [ ] Restore from internal/microSD
+- [ ] reboot to system
+- [ ] ADB
 
-## twrp-14 Manifest
-    repo init --depth=1 -u https://github.com/SavedByLight/platform_manifest_twrp_aosp.git -b twrp-14
-## Sync
-    repo sync
-## Clone TheNoobDevs Recovery Project TWRP tree
-    git clone https://github.com/TNDRP/android_device_samsung_r11q.git -b master device/samsung/r11q
-## Prepare
-    export ALLOW_MISSING_DEPENDENCIES=true; . build/envsetup.sh; lunch twrp_r11q-eng
-## Repopick Patches
-    repopick -Q "branch:android-14+status:open+-change:7371+-change:7543+-change:7553+-change:7671+-change:7717+-change:7718"
-## Run the Build Command
-    mka recoveryimage
+Medium checks
+- [ ] update.zip sideload
+- [ ] UI colors (red/blue inversions)
+- [ ] Screen goes off and on
+- [ ] F2FS/EXT4 Support, exFAT/NTFS where supported
+- [ ] all important partitions listed in mount/backup lists
+- [ ] backup/restore to/from external (USB-OTG) storage (not supported by the device)
+- [ ] backup/restore to/from adb (https://gerrit.omnirom.org/#/c/15943/)
+- [ ] decrypt /data
+- [ ] Correct date
+
+Minor checks
+- [ ] MTP export
+- [ ] reboot to bootloader
+- [ ] reboot to recovery
+- [ ] poweroff
+- [ ] battery level
+- [ ] temperature
+- [ ] encrypted backups
+- [ ] input devices via USB (USB-OTG) - keyboard, mouse and disks (not supported by the device)
+- [ ] USB mass storage export
+- [ ] set brightness
+- [ ] vibrate
+- [ ] screenshot
+- [ ] partition SD card
